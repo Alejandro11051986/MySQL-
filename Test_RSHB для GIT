@@ -1,0 +1,34 @@
+DROP DATABASE IF EXISTS Test_RSHB;
+CREATE DATABASE Test_RSHB;
+USE Test_RSHB;
+
+DROP TABLE IF EXISTS directory_of_branches;
+CREATE TABLE directory_of_branches (
+	DO bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	FILNAME varchar(255) DEFAULT NULL,
+	CURATOR varchar(255) DEFAULT NULL
+
+);
+
+
+DROP TABLE IF EXISTS products_reference;
+CREATE TABLE products_reference (
+	ID_PRODUCT int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	PRODUCT TEXT DEFAULT NULL
+);
+
+DROP TABLE IF EXISTS data_sales;
+CREATE TABLE data_sales (
+	ID bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	DATE varchar(255) DEFAULT NULL,
+	DO bigint unsigned NOT NULL,
+	TABNUM int DEFAULT NULL,
+	ID_PRODUCT int unsigned NOT NULL,
+	DOCNUM varchar(30) DEFAULT NULL,
+	SUM_SELL int DEFAULT NULL,
+	
+	FOREIGN KEY (DO) REFERENCES directory_of_branches(DO),
+	FOREIGN KEY (ID_PRODUCT) REFERENCES products_reference(ID_PRODUCT)
+);
+
+
